@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="FlowRig: Unified Skeleton Generation for 3D and 4D Meshes via Flow Matching">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="Computer Vision, 3D Vision, 4D Vision, Inverse Graphics, Generative Model">
+  <meta name="application-name" content="FlowRig">
+  <title>
+    FlowRig: Unified Skeleton Generation for 3D and 4D Meshes via Flow Matching
+  </title>
+  <link rel="canonical" href="https://tamu-visual-ai.github.io/FlowRig/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="FlowRig">
+  <meta property="og:site_name" content="FlowRig">
+  <meta property="og:url" content="https://tamu-visual-ai.github.io/FlowRig/">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "FlowRig",
+      "alternateName": "FlowRig: Unified Skeleton Generation for 3D and 4D Meshes via Flow Matching",
+      "url": "https://tamu-visual-ai.github.io/FlowRig/"
+    }
+  </script>
+  <link rel="preload" as="video" href="./static/videos/realign/bear_obj1/seq_sweep_overlay_a60_orbit_smooth_pingpong.mp4" type="video/mp4">
+
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+
+  <!-- favicon: cone-bone skeleton (static/images/favicon.svg; PNGs for older browsers / home screens) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./static/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./static/images/favicon-192x192.png">
+  <link rel="icon" type="image/svg+xml" href="./static/images/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="./static/images/apple-touch-icon.png">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro|Righteous" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/in-the-wild.css">
+  <link rel="stylesheet" href="./static/css/dynamic-recon.css">
+  <link rel="stylesheet" href="./static/css/static-recon.css">
+  <link rel="stylesheet" href="./static/css/dynamic-prediction.css">
+  <link rel="stylesheet" href="./static/css/overview.css">
+
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/select.js"></script>
+  <!-- 4D viewers (Dynamic Reconstruction, In-the-Wild): three.js r160 vendored under static/js/vendor/three;
+       shared code in static/js/viewer4d.js + static/js/media-sync.js -->
+  <script type="importmap">
+    {"imports": {"three": "./static/js/vendor/three/three.module.min.js", "three/addons/": "./static/js/vendor/three/addons/"}}
+  </script>
+  <script type="module" src="./static/js/dynamic-recon.js"></script>
+  <script type="module" src="./static/js/in-the-wild.js"></script>
+  <script type="module" src="./static/js/static-recon.js"></script>
+  <script type="module" src="./static/js/dynamic-prediction.js"></script>
+  <style>
+  .hero-cover-desktop {
+      background-color: #000000;
+      background-image: url("./static/videos/realign/bear_obj1/poster.jpg");
+      background-size: cover;
+      color: #fff;
+  }
+  /* Hero playlist: the clips fill the same 16:9 box the old 1920x1080 teaser filled, whatever their
+     resolution. Two stacked <video>s are double-buffered by initHeroPlaylist() in index.js; the incoming
+     clip fades in over the outgoing one. */
+  .hero-playlist {
+      z-index: 0;
+  }
+  .hero-playlist video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      z-index: 0;
+  }
+  .hero-playlist video.is-prev {
+      opacity: 1;
+  }
+  .hero-playlist video.is-active {
+      opacity: 1;
+      z-index: 1;
+      transition: opacity 0.5s;
+  }
+  .hero-cover-touch {
+      background-color: #000000;
+      background-image: url("./static/videos/realign/bear_obj1/poster.jpg");
+      background-position: center;
+      background-size: cover;
+      color: #fff;
+  }
+
+
+  .column-my {
+    flex: 1;  /* Ensures both columns take up equal width */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .half {
+      flex: 1;               /* Each child takes half the height of the column */
+      display: flex;         /* Make it a flex container */
+      justify-content: center; /* Center horizontally */
+      align-items: center;     /* Center vertically */
+      text-align: center;    /* Align text within the element */
+  }
+
+
+  </style>
+</head>
+
+<script type="text/javascript">
+    var sc_project=12835460; 
+    var sc_invisible=1; 
+    var sc_security="d2e3b553"; 
+    </script>
+    <script type="text/javascript"
+    src="https://www.statcounter.com/counter/counter.js" async></script>
+    <noscript><div class="statcounter"><a title="free hit counter"
+    href="https://statcounter.com/" target="_blank"><img class="statcounter"
+    src="https://c.statcounter.com/12835460/0/d2e3b553/1/" alt="free hit counter"
+    referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+    <!-- End of Statcounter Code -->
+
+<section class="hero hero-cover-desktop is-link is-hidden-touch is-fullheight video" style="overflow: hidden; position:relative;">
+  <!-- clips play in this order, then loop; started by initHeroPlaylists() (index.js) right after the hero
+       sections, which only loads/plays the hero visible at the current breakpoint -->
+  <div class="hero-video hero-playlist is-hidden-touch"
+    style="height: 100%; width: 177.77777778vh; min-width: 100%;min-height: 56.25vw;"
+    data-playlist="./static/videos/realign/bear_obj1/seq_sweep_overlay_a60_orbit_smooth_pingpong.mp4,
+                   ./static/videos/realign/hike_obj1_2/seq_sweep_overlay_a60_orbit_smooth_pingpong.mp4,
+                   ./static/videos/realign/flamingo_obj1/seq_sweep_overlay_a60_orbit_smooth_pingpong.mp4,
+                   ./static/videos/realign/judo_obj1/seq_sweep_overlay_a60_orbit_smooth_pingpong.mp4">
+    <video class="is-active" playsinline muted preload="none"
+      poster="./static/videos/realign/bear_obj1/poster.jpg"></video>
+    <video playsinline muted preload="none"></video>
+  </div>
+  <div class="overlay">
+  </div>
+
+  <div class="hero-head is-hidden-touch">
+    <header class="navbar is-hidden-touch">
+      <div class="container is-size-5">
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <!-- TODO: Paper and arXiv point to a placeholder until the paper is public -->
+            <a class="navbar-item pl-4 pr-4" href="https://www.google.com/">
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/pdf.svg" alt="PDF" />
+              </span>
+              <span>Paper</span>
+            </a>
+            <a class="navbar-item  pl-4 pr-4" href="https://www.google.com/">
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/arxiv.svg" alt="ArXiv" />
+              </span>
+              <span>arXiv</span> 
+            </a>
+            <a class="navbar-item  pl-4 pr-4" href="https://github.com/TAMU-Visual-AI/FlowRig">
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/github.png" alt="GitHub" />
+              </span>
+              <span>Code</span> 
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!--  Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-1 publication-title hero-title is-size-1-mobile">
+        <span class="flowrig">FlowRig</span>: Unified Skeleton Generation <br> for 3D and 4D Meshes via Flow Matching
+      </h1>
+      <h1 class="is-2 is-size-4-mobile author-line" style="font-size: 2rem; opacity: 100%;">
+        <span><a href="https://percool.github.io/" target="_blank" rel="noopener">Fengzhi Guo</a></span>
+        <span>Nate Morrill</span>
+        <span><a href="https://shi-qi-li.github.io/" target="_blank" rel="noopener">Shiqi Li</a></span>
+        <span><a href="https://czhang0528.github.io/" target="_blank" rel="noopener">Cheng Zhang</a></span>
+      </h1>
+      <br>
+      <h1 class="is-3 is-size-5-mobile affiliation-line" style="font-size: 1.75rem; opacity: 100%;">
+        <span class="affiliation-item">Texas A&amp;M University</span>
+      </h1>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- Hero footer: will stick at the bottom -->
+  <div class="hero-foot is-hidden-mobile jump-nav">
+    <nav class="tabs is-toggle is-toggle-rounded is-centered is-size-5 jump-tabs" aria-label="Jump to section">
+      <ul>
+        <!-- <li><a href="#intro">Introduction</a></li>
+        <li><a href="#app">Generated 4D Scenes</a></li>
+        <li><a href="#viewer">Interactive Viewer</a></li> -->
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#method">Method</a></li>
+        <li><a href="#in-the-wild">In-the-Wild</a></li>
+        <li><a href="#dynamic-recon">Dynamic</a></li>
+        <li><a href="#static_recon">Static</a></li>
+        <li><a href="#dynamic-prediction">Prediction</a></li>
+        <!-- <li><a href="#comparisons">Comparisons</a></li> -->
+      </ul>
+    </nav>
+  </div>
+</section>
+
+<section class="hero hero-cover-touch is-hidden-desktop is-link is-fullheight video" style="overflow: hidden; position:relative;">
+
+  <!-- <div class="hero-video is-hidden-desktop is-inline-block-mobile"
+    style="height: 154.28571428vw; width: 100%; min-width:64.81481481vh;min-height:100%;">
+    <video playsinline autoplay muted loop>
+      <source src="/rose4d/static/videos/teaser-mobile-small.mp4" type="video/mp4">
+    </video>
+  </div>  -->
+
+  <!-- same clips as the desktop hero (there is no portrait version): the box fills the hero and the 16:9
+       clips are center-cropped (object-fit: cover) -->
+  <div class="hero-video hero-playlist is-inline-block-mobile"
+    data-playlist="./static/videos/realign/bear_obj1/seq_sweep_overlay_a60_orbit_smooth_pingpong.mp4,
+                   ./static/videos/realign/hike_obj1_2/seq_sweep_overlay_a60_orbit_smooth_pingpong.mp4,
+                   ./static/videos/realign/flamingo_obj1/seq_sweep_overlay_a60_orbit_smooth_pingpong.mp4,
+                   ./static/videos/realign/judo_obj1/seq_sweep_overlay_a60_orbit_smooth_pingpong.mp4">
+    <video class="is-active" playsinline muted preload="none"
+      poster="./static/videos/realign/bear_obj1/poster.jpg"></video>
+    <video playsinline muted preload="none"></video>
+  </div>
+
+
+  <div class="overlay">
+  </div>
+
+  <!--  Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-1 publication-title hero-title is-size-1-mobile">
+        <span class="flowrig">FlowRig</span>: Unified Skeleton Generation <br> for 3D and 4D Meshes via Flow Matching
+      </h1>
+      <h1 class="is-3 is-size-5-mobile author-line" style="font-size: 2rem; opacity: 100%;">
+        <span><a href="https://percool.github.io/" target="_blank" rel="noopener">Fengzhi Guo</a></span>
+        <span>Nate Morrill</span>
+        <span><a href="https://shi-qi-li.github.io/" target="_blank" rel="noopener">Shiqi Li</a></span>
+        <span><a href="https://czhang0528.github.io/" target="_blank" rel="noopener">Cheng Zhang</a></span>
+      </h1>
+      <br>
+      <h1 class="is-3 is-size-5-mobile affiliation-line" style="font-size: 1.75rem; opacity: 100%;">
+        <span class="affiliation-item">Texas A&amp;M University</span>
+      </h1>
+    </div>
+  </div>
+
+  </div>
+
+</section>
+
+<script>
+  // both hero sections are parsed now: start the visible hero playlist (index.js is loaded in <head>)
+  initHeroPlaylists();
+</script>
+
+
+
+<!-- Abstract + method overview (styles: static/css/overview.css; figure from static/images/framework.pdf) -->
+<section class="section overview-section" id="abstract">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <h2 class="title is-3">Abstract</h2>
+    </div>
+    <p class="abstract-text">
+      Automatic rigging is a fundamental task for both static 3D and dynamic 4D mesh animation, yet existing methods do not provide a unified feedforward solution for these two settings. While static 3D riggers achieve strong quality, they often provide limited control over bone count and become temporally unstable when applied frame by frame to dynamic meshes. Existing 4D methods, in contrast, typically rely on expensive per-sequence optimization. We propose <span class="flowrig">FlowRig</span>, a template-free and data-efficient framework for unified 3D and 4D skeleton generation. Built on flow matching, <span class="flowrig">FlowRig</span> generates temporally aligned skeletons for an entire sequence in a single feedforward pass, while naturally handling single-mesh 3D rigging. The model further supports explicit skeleton-count control, uncertainty estimation for candidate selection, and masking-based interpolation, forecasting, and backcasting. To address limited paired 4D rigging data, we adopt a curriculum that initializes from large-scale 3D rigging data and adapts to mid-scale 4D mesh-skeleton data. Experiments show that <span class="flowrig">FlowRig</span> achieves strong static 3D rigging performance with controllable bone complexity, as well as high-quality and temporally consistent 4D reconstruction and prediction results.
+    </p>
+  </div>
+</section>
+
+<section class="section overview-section" id="method">
+  <div class="container is-max-widescreen">
+    <div class="content has-text-centered">
+      <h2 class="title is-3">Method</h2>
+    </div>
+    <figure class="method-figure">
+      <a href="./static/images/framework.pdf" title="Open the full-resolution figure (PDF)">
+        <picture>
+          <source srcset="./static/images/framework.webp" type="image/webp">
+          <img src="./static/images/framework.png" width="2600" height="783" loading="lazy"
+            alt="FlowRig overview: mesh and noisy-skeleton encoders feed a flow matching transformer whose features are decoded by skeleton, graph and uncertainty heads.">
+        </picture>
+      </a>
+      <figcaption>
+        <b><span class="flowrig">FlowRig</span> overview.</b> We encode meshes into conditioning tokens, and initialize noisy skeleton slots, which are processed by a flow matching transformer to predict temporally aligned skeleton representations. The predicted features are decoded by the skeleton, graph, and uncertainty heads to recover 3D/4D rigging outputs, with uncertainty used for sample selection. <var class="math">n</var> denotes the skeleton count, and <var class="math">&#x3D5;</var> denotes the unconditional token.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- In-the-Wild: assets in static/in_the_wild/<case>/ (for_wild/export_wild_web.py), logic in static/js/in-the-wild.js -->
+<section class="section in-the-wild-section" id="in-the-wild">
+  <div class="container is-max-widescreen">
+    <div class="content has-text-centered">
+      <h2 class="title is-3">In-the-Wild Instances</h2>
+    </div>
+    <p class="itw-intro">
+      Real <a href="https://davischallenge.org/">DAVIS</a> videos lifted to 4D meshes by <a href="https://remysabathier.github.io/actionmesh/">ActionMesh</a>, rigged by <span class="flowrig">FlowRig</span>. Our framework robustly <u>handles structural mesh defects</u>, such as explicit holes or artifacts, to yield spatio-temporally consistent skeletal outputs.
+    </p>
+    <div class="itw-shell" id="itw-shell">
+      <div class="itw-toolbar">
+        <span class="itw-toolbar__label">Choose a sequence</span>
+        <span class="itw-toolbar__count" id="itw-count"></span>
+      </div>
+      <div class="itw-selector" id="itw-selector" role="group" aria-label="Choose a sequence"></div>
+
+      <div class="itw-viewer-toolbar">
+        <h3 class="title is-4" id="itw-title">&nbsp;</h3>
+        <span class="itw-viewer-toolbar__meta" id="itw-meta"></span>
+      </div>
+      <div class="itw-grid">
+        <!-- input (top layer, clipped left of the divider) over the pixel-aligned overlay; static/js/compare-slider.js -->
+        <figure class="itw-panel">
+          <div class="itw-stage itw-compare" id="itw-compare">
+            <video id="itw-overlay" muted playsinline preload="auto" aria-label="Overlay of the 4D mesh and skeleton"></video>
+            <video id="itw-raw" class="itw-compare__top" muted playsinline preload="auto" aria-label="Input video"></video>
+            <span class="itw-compare__tag is-left" id="itw-tag-raw">Input</span>
+            <span class="itw-compare__tag is-right" id="itw-tag-overlay">Overlay</span>
+            <div class="itw-compare__line" aria-hidden="true"></div>
+            <div class="itw-compare__handle" id="itw-compare-handle" role="slider" tabindex="0" aria-orientation="horizontal"
+                 aria-label="Divider between the input video (left) and the overlay (right)" aria-valuemin="0" aria-valuemax="100"
+                 title="Drag left or right to compare. Arrow keys also work.">↔</div>
+          </div>
+          <figcaption><span>Input | Overlay</span><small>4D mesh + skeleton · drag the divider to compare</small></figcaption>
+        </figure>
+        <figure class="itw-panel is-ours">
+          <div class="itw-stage" id="itw-3d">
+            <div class="itw-stage__loading" id="itw-3d-loading">Loading 4D…</div>
+            <div class="itw-stage__buttons">
+              <button type="button" class="button is-white is-rounded" id="itw-reset" title="Back to the video camera" disabled>Reset view</button>
+              <button type="button" class="button is-white is-rounded" id="itw-fullscreen" title="Fullscreen" aria-label="Fullscreen">⤢</button>
+            </div>
+          </div>
+          <figcaption><span>Interactive 4D</span><small>drag to rotate · scroll to zoom</small></figcaption>
+        </figure>
+      </div>
+
+      <div class="itw-playback">
+        <button type="button" class="button is-primary is-rounded itw-play" id="itw-play" aria-label="Play" disabled>
+          <span class="itw-play__icon" id="itw-play-icon" aria-hidden="true">▶</span><span id="itw-play-label">Play</span>
+        </button>
+        <button type="button" class="itw-restart" id="itw-restart" title="Restart" aria-label="Restart" disabled>↺</button>
+        <input type="range" class="itw-timeline" id="itw-timeline" min="0" max="23" step="1" value="0" aria-label="Frame" disabled>
+        <span class="itw-frame" id="itw-frame">Frame 01 / 24</span>
+        <label class="itw-speed" for="itw-speed">Speed
+          <span class="select is-small is-rounded">
+            <select id="itw-speed">
+              <option value="0.5">0.5×</option>
+              <option value="1" selected>1×</option>
+              <option value="2">2×</option>
+            </select>
+          </span>
+        </label>
+      </div>
+      <div class="itw-footnote">
+        <span id="itw-status" role="status" aria-live="polite">Loading…</span>
+        <span class="itw-footnote__tips">Compare — drag the divider · Orbit — left drag · Pan — right drag or Shift + drag · Zoom — wheel or pinch</span>
+      </div>
+    </div>
+    <noscript><p class="has-text-centered">Enable JavaScript to use the In-the-Wild viewer.</p></noscript>
+  </div>
+</section>
+
+
+<!-- Dynamic Reconstruction: assets in static/dynamic_recon/<uuid>/ (skt/mytool/export_dynamic_web.py),
+     logic in static/js/dynamic-recon.js -->
+<section class="section dynamic-recon-section" id="dynamic-recon">
+  <div class="container is-max-widescreen">
+    <div class="content has-text-centered">
+      <h2 class="title is-3">Dynamic Reconstruction</h2>
+    </div>
+    <p class="itw-intro">
+      Skeletons for animated meshes, compared with the ground truth and Puppeteer.
+    </p>
+    <div class="itw-shell" id="dyn-shell">
+      <div class="itw-toolbar">
+        <span class="itw-toolbar__label">Choose a sequence</span>
+        <span class="itw-toolbar__count" id="dyn-count"></span>
+      </div>
+      <div class="itw-selector dyn-selector" id="dyn-selector" role="group" aria-label="Choose a sequence"></div>
+
+      <div class="itw-viewer-toolbar">
+        <h3 class="title is-4" id="dyn-title">&nbsp;</h3>
+        <span class="itw-viewer-toolbar__meta" id="dyn-meta"></span>
+      </div>
+      <div class="dyn-grid">
+        <div class="dyn-corner" aria-hidden="true"></div>
+        <div class="dyn-colhead">GT</div>
+        <div class="dyn-colhead is-ours">Ours <small class="flowrig">FlowRig</small></div>
+        <div class="dyn-colhead">Puppeteer</div>
+
+        <div class="dyn-rowhead">
+          <span>Video</span>
+          <div class="itw-segmented is-vertical" role="group" aria-label="Camera">
+            <button type="button" data-dyn-view="orbit" aria-pressed="true">Orbit</button>
+            <button type="button" data-dyn-view="front" aria-pressed="false">Front</button>
+          </div>
+        </div>
+        <figure class="itw-panel"><div class="itw-stage dyn-stage"><video id="dyn-video-gt" muted playsinline preload="auto" aria-label="GT video"></video></div></figure>
+        <figure class="itw-panel is-ours"><div class="itw-stage dyn-stage"><video id="dyn-video-ours" muted playsinline preload="auto" aria-label="Ours video"></video></div></figure>
+        <figure class="itw-panel"><div class="itw-stage dyn-stage"><video id="dyn-video-puppeteer" muted playsinline preload="auto" aria-label="Puppeteer video"></video></div></figure>
+
+        <div class="dyn-rowhead">
+          <span>Interactive 4D <br><small>drag · scroll · synced</small></span>
+          <button type="button" class="button is-light is-rounded" id="dyn-reset" title="Back to the front view" disabled>Reset view</button>
+        </div>
+        <figure class="itw-panel"><div class="itw-stage dyn-stage" id="dyn-3d-gt"><div class="itw-stage__loading dyn-3d-loading">Loading 4D…</div></div></figure>
+        <figure class="itw-panel is-ours"><div class="itw-stage dyn-stage" id="dyn-3d-ours"><div class="itw-stage__loading dyn-3d-loading">Loading 4D…</div></div></figure>
+        <figure class="itw-panel"><div class="itw-stage dyn-stage" id="dyn-3d-puppeteer"><div class="itw-stage__loading dyn-3d-loading">Loading 4D…</div></div></figure>
+      </div>
+
+      <div class="itw-playback">
+        <button type="button" class="button is-primary is-rounded itw-play" id="dyn-play" aria-label="Play" disabled>
+          <span class="itw-play__icon" id="dyn-play-icon" aria-hidden="true">▶</span><span id="dyn-play-label">Play</span>
+        </button>
+        <button type="button" class="itw-restart" id="dyn-restart" title="Restart" aria-label="Restart" disabled>↺</button>
+        <input type="range" class="itw-timeline" id="dyn-timeline" min="0" max="23" step="1" value="0" aria-label="Frame" disabled>
+        <span class="itw-frame" id="dyn-frame">Frame 01 / 24</span>
+        <label class="itw-speed" for="dyn-speed">Speed
+          <span class="select is-small is-rounded">
+            <select id="dyn-speed">
+              <option value="0.5">0.5×</option>
+              <option value="1">1×</option>
+              <option value="2" selected>2×</option>
+            </select>
+          </span>
+        </label>
+      </div>
+      <div class="itw-footnote">
+        <span id="dyn-status" role="status" aria-live="polite">Loading…</span>
+        <span class="itw-footnote__tips">Orbit — left drag · Pan — right drag or Shift + drag · Zoom — wheel or pinch</span>
+      </div>
+    </div>
+    <noscript><p class="has-text-centered">Enable JavaScript to use the Dynamic Reconstruction viewer.</p></noscript>
+  </div>
+</section>
+
+
+<!-- Static Reconstruction (replaces the template's single-video placeholder): assets in static/static_recon/<dataset>/<case>/
+     (skt/mytool/export_static_web.py), logic in static/js/static-recon.js -->
+<section class="section static-recon-section" id="static_recon">
+  <div class="container is-max-widescreen">
+    <div class="content has-text-centered">
+      <h2 class="title is-3">Static Reconstruction</h2>
+    </div>
+    <p class="itw-intro">
+      Skeletons for static meshes on three benchmarks, compared with the ground truth and a baseline of your choice.
+      <!-- Please pick a dataset and a sequence. -->
+    </p>
+    <div class="itw-shell" id="st-shell">
+      <div class="itw-toolbar st-toolbar">
+        <span class="itw-toolbar__label">Choose a sequence</span>
+        <div class="itw-segmented" id="st-datasets" role="group" aria-label="Dataset"></div>
+        <span class="itw-toolbar__count" id="st-count"></span>
+      </div>
+      <div class="itw-selector dyn-selector" id="st-selector" role="group" aria-label="Choose a sequence"></div>
+
+      <div class="itw-viewer-toolbar">
+        <h3 class="title is-4" id="st-title">&nbsp;</h3>
+        <span class="itw-viewer-toolbar__meta" id="st-meta"></span>
+      </div>
+      <div class="st-grid">
+        <div class="dyn-colhead">GT</div>
+        <div class="dyn-colhead is-ours">Ours <small class="flowrig">FlowRig</small></div>
+        <div class="dyn-colhead st-baseline-head">
+          <span class="select is-small is-rounded"><select id="st-baseline" aria-label="Baseline"></select></span>
+        </div>
+        <figure class="itw-panel"><div class="itw-stage st-stage"><video id="st-video-gt" muted playsinline preload="auto" aria-label="GT orbit video"></video></div></figure>
+        <figure class="itw-panel is-ours"><div class="itw-stage st-stage"><video id="st-video-ours" muted playsinline preload="auto" aria-label="Ours orbit video"></video></div></figure>
+        <figure class="itw-panel"><div class="itw-stage st-stage"><video id="st-video-baseline" muted playsinline preload="auto" aria-label="Baseline orbit video"></video></div></figure>
+
+        <div class="st-3d-head">
+          <span>Interactive 3D <small>drag · scroll · synced</small></span>
+          <button type="button" class="button is-light is-rounded is-small" id="st-reset" title="Back to the render camera" disabled>Reset view</button>
+        </div>
+        <figure class="itw-panel"><div class="itw-stage st-stage" id="st-3d-gt"><div class="itw-stage__loading st-3d-loading">Loading 3D…</div></div></figure>
+        <figure class="itw-panel is-ours"><div class="itw-stage st-stage" id="st-3d-ours"><div class="itw-stage__loading st-3d-loading">Loading 3D…</div></div></figure>
+        <figure class="itw-panel"><div class="itw-stage st-stage" id="st-3d-baseline"><div class="itw-stage__loading st-3d-loading">Loading 3D…</div></div></figure>
+      </div>
+
+      <div class="itw-playback">
+        <button type="button" class="button is-primary is-rounded itw-play" id="st-play" aria-label="Play" disabled>
+          <span class="itw-play__icon" id="st-play-icon" aria-hidden="true">▶</span><span id="st-play-label">Play</span>
+        </button>
+        <button type="button" class="itw-restart" id="st-restart" title="Restart" aria-label="Restart" disabled>↺</button>
+        <input type="range" class="itw-timeline" id="st-timeline" min="0" max="71" step="1" value="0" aria-label="Frame" disabled>
+        <span class="itw-frame" id="st-frame">Frame 01 / 72</span>
+        <label class="itw-speed" for="st-speed">Speed
+          <span class="select is-small is-rounded">
+            <select id="st-speed">
+              <option value="0.5">0.5×</option>
+              <option value="1" selected>1×</option>
+              <option value="2">2×</option>
+            </select>
+          </span>
+        </label>
+      </div>
+      <div class="itw-footnote">
+        <span id="st-status" role="status" aria-live="polite">Loading…</span>
+        <span class="itw-footnote__tips">Third column: pick a baseline from the menu · 3D: left drag orbit · right drag pan · wheel zoom</span>
+      </div>
+    </div>
+    <noscript><p class="has-text-centered">Enable JavaScript to use the Static Reconstruction viewer.</p></noscript>
+  </div>
+</section>
+
+<!-- Dynamic Prediction: assets in static/dynamic_prediction/<case>/ (skt/mytool/export_prediction_web.py),
+     logic in static/js/dynamic-prediction.js -->
+<section class="section dynamic-prediction-section" id="dynamic-prediction">
+  <div class="container is-max-widescreen">
+    <div class="content has-text-centered">
+      <h2 class="title is-3">Dynamic Prediction</h2>
+    </div>
+    <p class="itw-intro">
+      Given the skeleton on some frames, <span class="flowrig">FlowRig</span> predicts it on the others: forecasting the future, backcasting the
+      past, or interpolating between keyframes. Please pick a task.
+    </p>
+    <div class="itw-shell" id="pred-shell">
+      <div class="itw-toolbar pred-toolbar">
+        <span class="itw-toolbar__label">Task</span>
+        <div class="itw-segmented" id="pred-tasks" role="group" aria-label="Prediction task"></div>
+        <span class="pred-legend" id="pred-legend"></span>
+      </div>
+      <div class="pred-grid" id="pred-grid"></div>
+
+      <div class="itw-playback">
+        <button type="button" class="button is-primary is-rounded itw-play" id="pred-play" aria-label="Play" disabled>
+          <span class="itw-play__icon" id="pred-play-icon" aria-hidden="true">▶</span><span id="pred-play-label">Play</span>
+        </button>
+        <button type="button" class="itw-restart" id="pred-restart" title="Restart" aria-label="Restart" disabled>↺</button>
+        <input type="range" class="itw-timeline" id="pred-timeline" min="0" max="23" step="1" value="0" aria-label="Frame" disabled>
+        <span class="itw-frame" id="pred-frame">Frame 01 / 24</span>
+        <label class="itw-speed" for="pred-speed">Speed
+          <span class="select is-small is-rounded">
+            <select id="pred-speed">
+              <option value="0.5">0.5×</option>
+              <option value="1">1×</option>
+              <option value="2" selected>2×</option>
+            </select>
+          </span>
+        </label>
+      </div>
+      <div class="itw-footnote">
+        <span id="pred-status" role="status" aria-live="polite">Loading…</span>
+        <span class="itw-footnote__tips">Blue bones: observed frames · gold bones: predicted frames</span>
+      </div>
+    </div>
+    <noscript><p class="has-text-centered">Enable JavaScript to use the Dynamic Prediction viewer.</p></noscript>
+  </div>
+</section>
+
+<!-- Comparisons -->
+<!-- <div class="comparison-section" id="comparisons">
+  <div class="content has-text-centered">
+    <h2 class="title is-3">Comparisons</h2>
+  </div>
+  <div class="comparison-category">
+    <h3 class="title is-4 has-text-centered">Multi-object</h3>
+    <p class="comparison-subtitle has-text-centered">Select Scene:</p>
+    <div class="comparison-scene-buttons" id="comparison-scene-buttons-multi">
+    </div>
+    <p class="comparison-scene-prompt" id="comparison-scene-prompt-multi"></p>
+    <div class="comparison-grid-wrapper">
+      <div class="comparison-grid" id="comparison-grid-multi"></div>
+    </div>
+  </div>
+  <div class="comparison-category">
+    <h3 class="title is-4 has-text-centered">Single-object</h3>
+    <p class="comparison-subtitle has-text-centered">Select Scene:</p>
+    <div class="comparison-scene-buttons" id="comparison-scene-buttons-single">
+    </div>
+    <p class="comparison-scene-prompt" id="comparison-scene-prompt-single"></p>
+    <div class="comparison-grid-wrapper">
+      <div class="comparison-grid" id="comparison-grid-single"></div>
+    </div>
+  </div>
+</div> -->
+<!--/ Comparisons -->
+
+
+
+<!-- Related links: projects whose models / datasets this work uses (styles: static/css/overview.css) -->
+<section class="section overview-section related-section" id="related">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <h2 class="title is-3">Related Links</h2>
+    </div>
+    <p class="related-intro">We thank the authors of the following projects for releasing their models and datasets:</p>
+    <ul class="related-list">
+        <li><a href="https://chaoyuesong.github.io/Puppeteer/" target="_blank" rel="noopener">Puppeteer: Rig and Animate Your 3D Models</a></li>
+        <li><a href="https://chaoyuesong.github.io/MagicArticulate/" target="_blank" rel="noopener">MagicArticulate: Make Your 3D Models Articulation-Ready</a></li>
+        <li><a href="https://zjp-shadow.github.io/works/UniRig/" target="_blank" rel="noopener">One Model to Rig Them All: Diverse Skeleton Rigging with UniRig</a></li>
+        <li><a href="https://www.liuisabella.com/RigAnything/" target="_blank" rel="noopener">RigAnything: Template-Free Autoregressive Rigging for Diverse 3D Assets</a></li>
+        <li><a href="https://anymate3d.github.io/" target="_blank" rel="noopener">Anymate: A Dataset and Baselines for Learning 3D Object Rigging</a></li>
+        <li><a href="https://zhan-xu.github.io/rig-net/" target="_blank" rel="noopener">RigNet: Neural Rigging for Articulated Characters</a></li>
+        <li><a href="https://github.com/yiboz2001/TexVerse" target="_blank" rel="noopener">TexVerse: A Universe of 3D Objects with High-Resolution Textures</a></li>
+        <li><a href="https://objaverse.allenai.org/" target="_blank" rel="noopener">Objaverse-XL: A Universe of 10M+ 3D Objects</a></li>
+        <!-- <li><a href="https://davischallenge.org/" target="_blank" rel="noopener">DAVIS: Densely Annotated Video Segmentation</a></li> -->
+        <!-- <li><a href="https://remysabathier.github.io/actionmesh/" target="_blank" rel="noopener">ActionMesh: Animated 3D Mesh Generation with Temporal 3D Diffusion</a></li> -->
+        <!-- <li><a href="https://neuralcarver.github.io/michelangelo/" target="_blank" rel="noopener">Michelangelo: Conditional 3D Shape Generation based on Shape-Image-Text Aligned Latent Representation</a></li> -->
+    </ul>
+  </div>
+</section>
+
+<section class="section is-hidden-touch" id="bibtex">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <h3 class="title">Bibtex</h3>
+    </div>
+    <div class="columns is-centered">
+      <div class="content" style="margin-top: 10pt;">
+        <pre class="is-hidden-mobile"><code>@misc{guo2026flowrig,
+          title={FlowRig: Unified Skeleton Generation for 3D and 4D Meshes via Flow Matching}, 
+          author={Fengzhi Guo and Nate Morrill and Shiqi Li and Cheng Zhang},
+          year={2026},
+          eprint={xxxx},
+          archivePrefix={arXiv},
+          primaryClass={cs.CV},
+          url={https://arxiv.org/abs/xxxx}, 
+    }</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="columns is-centered">
+      <h3 class="title">Acknowledgements</h3>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template modified from <a href="https://nerfies.github.io/">NeRFies</a> and <a
+              href="https://chen-geng.com/rose4d">Birth and Death of a Rose</a>.
+          <!-- </p>
+          <p> -->
+            This website is licensed under a <a rel="license"
+              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- 79 MB bundle for the template's Interactive Viewer (#viewer, commented out above); re-enable together with it -->
+<!-- <script src="./static/js/three-viewer.bundle.js"></script> -->
+</body>
+
+</html>

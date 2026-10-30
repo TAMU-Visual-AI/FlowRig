@@ -1,0 +1,118 @@
+/* Dynamic Reconstruction section (static/js/dynamic-recon.js). Builds on the shared viewer styles in
+   in-the-wild.css (.itw-shell / .itw-toolbar / .itw-selector / .itw-card / .itw-panel / .itw-stage /
+   .itw-playback / .itw-footnote); this file adds the GT | Ours | Puppeteer x Front | Orbit | 4D grid. */
+.dynamic-recon-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  --itw-accent: #00d1b2;
+  --itw-accent-dark: #00947e;
+  --itw-accent-light: #ebfffc;
+  --itw-line: #e3e7ec;
+  --itw-muted: #6b7280;
+  --itw-stage: #ffffff;   /* the renders have white backgrounds */
+}
+.dyn-selector {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+.dyn-card img {
+  aspect-ratio: 9 / 10;
+  object-fit: contain;
+  background: #fff;
+}
+
+.dyn-grid {
+  display: grid;
+  grid-template-columns: 8.5rem repeat(3, minmax(0, 1fr));
+  gap: 0.75rem 0.9rem;
+  padding: 0 1.6rem;
+  align-items: stretch;
+}
+.dyn-colhead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: 999px;
+  background: #f5f6f8;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #363636;
+}
+.dyn-colhead.is-ours {
+  background: var(--itw-accent-light);
+  color: var(--itw-accent-dark);
+  box-shadow: inset 0 0 0 1px var(--itw-accent);
+}
+.dyn-colhead small {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.dyn-rowhead {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.5rem;
+  text-align: right;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #363636;
+}
+.dyn-rowhead small {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--itw-muted);
+}
+.dyn-rowhead .button {
+  height: 1.9rem;
+  padding: 0 0.7rem;
+  font-size: 0.78rem;
+}
+.dyn-grid .itw-panel.is-ours {
+  border: 2px solid var(--itw-accent);
+}
+.dyn-stage {
+  aspect-ratio: 540 / 600;
+}
+.dyn-stage canvas {
+  cursor: grab;
+}
+
+@media screen and (max-width: 1023px) {
+  .dyn-selector {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+@media screen and (max-width: 768px) {
+  .dyn-selector {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .dyn-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    padding: 0 0.9rem;
+  }
+  .dyn-corner {
+    display: none;
+  }
+  .dyn-colhead {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.3rem;
+  }
+  .dyn-colhead small {
+    display: none;
+  }
+  .dyn-rowhead {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    margin-top: 0.4rem;
+  }
+}

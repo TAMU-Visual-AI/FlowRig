@@ -1,0 +1,1622 @@
+{
+ "fps": 12.0,
+ "n_frames": 72,
+ "panel_wh": [
+  600,
+  528
+ ],
+ "methods": {
+  "gt": "GT",
+  "ours": "Ours",
+  "anymate": "Anymate",
+  "magic_articulate": "MagicArticulate",
+  "puppeteer": "Puppeteer",
+  "riganything": "RigAnything",
+  "unirig": "UniRig"
+ },
+ "baselines": [
+  "anymate",
+  "magic_articulate",
+  "puppeteer",
+  "riganything",
+  "unirig"
+ ],
+ "default_baseline": "anymate",
+ "datasets": [
+  {
+   "id": "xl",
+   "label": "Articulation-XL2.0",
+   "dir": "xl",
+   "test_npz": "datasets/Articulation-XL2.0/articulation_xlv2_test.npz",
+   "thumb_camera": {
+    "az": 325.0,
+    "el": 40.0
+   },
+   "baselines": [
+    "anymate",
+    "magic_articulate",
+    "puppeteer",
+    "riganything",
+    "unirig"
+   ],
+   "cases": [
+    {
+     "id": "0e715421-cb84-5a40-9968-63169b412307",
+     "dir": "0e715421-cb84-5a40-9968-63169b412307",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       -1,
+       0
+      ]
+     ],
+     "thumb_pose_source": "manual",
+     "thumb_iou_fit": 0.286,
+     "mesh3d": {
+      "n_verts": 880,
+      "n_faces": 570,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        880,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 5280,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.014462974958000032,
+      "bone_radius": 0.007954636226900017
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 23,
+      "ours": 18,
+      "anymate": 48,
+      "magic_articulate": 16,
+      "puppeteer": 23,
+      "riganything": 20,
+      "unirig": 9
+     },
+     "ours_sample": {
+      "sample": "s3",
+      "video_sample": "s3",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "195b4578-8564-526b-b01a-9c3f6fba535e",
+     "dir": "195b4578-8564-526b-b01a-9c3f6fba535e",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.459,
+     "mesh3d": {
+      "n_verts": 2668,
+      "n_faces": 1332,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        2668,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 16008,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.018423694376078718,
+      "bone_radius": 0.010133031906843296
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 52,
+      "ours": 52,
+      "anymate": 36,
+      "magic_articulate": 22,
+      "puppeteer": 22,
+      "riganything": 19,
+      "unirig": 22
+     },
+     "ours_sample": {
+      "sample": "s1",
+      "video_sample": "s3",
+      "weak_match": false,
+      "chosen_by_user": true
+     }
+    },
+    {
+     "id": "50d70307-1a69-5d4d-b6b1-a8b582e8de64",
+     "dir": "50d70307-1a69-5d4d-b6b1-a8b582e8de64",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       -1,
+       0
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.653,
+     "mesh3d": {
+      "n_verts": 5214,
+      "n_faces": 2786,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        5214,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 31284,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.016622018253801923,
+      "bone_radius": 0.009142110039591058
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 59,
+      "ours": 59,
+      "anymate": 52,
+      "magic_articulate": 29,
+      "puppeteer": 22,
+      "riganything": 21,
+      "unirig": 28
+     },
+     "ours_sample": {
+      "sample": "s2",
+      "video_sample": "s2",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "731a937f-4861-51a6-8131-e99ddfa0cc72",
+     "dir": "731a937f-4861-51a6-8131-e99ddfa0cc72",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       -1,
+       0
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.615,
+     "mesh3d": {
+      "n_verts": 4884,
+      "n_faces": 2412,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        4884,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 29304,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.017496267154986322,
+      "bone_radius": 0.009622946935242477
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 40,
+      "ours": 35,
+      "anymate": 64,
+      "magic_articulate": 13,
+      "puppeteer": 9,
+      "riganything": 27,
+      "unirig": 6
+     },
+     "ours_sample": {
+      "sample": "s3",
+      "video_sample": "s3",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "9758cf07-e687-58d5-81f0-380f7444cd4b",
+     "dir": "9758cf07-e687-58d5-81f0-380f7444cd4b",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.754,
+     "mesh3d": {
+      "n_verts": 2821,
+      "n_faces": 3636,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        2821,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 16926,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.016445007447634732,
+      "bone_radius": 0.009044754096199103
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 24,
+      "ours": 40,
+      "anymate": 48,
+      "magic_articulate": 34,
+      "puppeteer": 34,
+      "riganything": 22,
+      "unirig": 46
+     },
+     "ours_sample": {
+      "sample": "s3",
+      "video_sample": "s3",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "98b24961-8b95-5532-9aa3-63aecd36bb4c",
+     "dir": "98b24961-8b95-5532-9aa3-63aecd36bb4c",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.549,
+     "mesh3d": {
+      "n_verts": 8308,
+      "n_faces": 3000,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        8308,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 49848,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.019037604193375367,
+      "bone_radius": 0.010470682306356453
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 34,
+      "ours": 46,
+      "anymate": 51,
+      "magic_articulate": 47,
+      "puppeteer": 22,
+      "riganything": 23,
+      "unirig": 42
+     },
+     "ours_sample": {
+      "sample": "s4",
+      "video_sample": "s4",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "aa07aa13-c759-54e6-a9fb-bb8a44dd3c9a",
+     "dir": "aa07aa13-c759-54e6-a9fb-bb8a44dd3c9a",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       -1,
+       0
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.614,
+     "mesh3d": {
+      "n_verts": 3242,
+      "n_faces": 1604,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        3242,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 19452,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.015597387945751582,
+      "bone_radius": 0.008578563370163371
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 52,
+      "ours": 51,
+      "anymate": 43,
+      "magic_articulate": 52,
+      "puppeteer": 52,
+      "riganything": 20,
+      "unirig": 34
+     },
+     "ours_sample": {
+      "sample": "s0",
+      "video_sample": "s0",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "ccfb2c76-f7aa-5469-ab20-6590c2480205",
+     "dir": "ccfb2c76-f7aa-5469-ab20-6590c2480205",
+     "thumb_pose": [
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       -1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.258,
+     "mesh3d": {
+      "n_verts": 5285,
+      "n_faces": 2514,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        5285,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 31710,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.01394570012763746,
+      "bone_radius": 0.007670135070200603
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 25,
+      "ours": 25,
+      "anymate": 42,
+      "magic_articulate": 34,
+      "puppeteer": 23,
+      "riganything": 8,
+      "unirig": 15
+     },
+     "ours_sample": {
+      "sample": "s4",
+      "video_sample": "s4",
+      "weak_match": true,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "d1adae72-88a7-50bf-b45b-0668f2f24c69",
+     "dir": "d1adae72-88a7-50bf-b45b-0668f2f24c69",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       -1,
+       0
+      ]
+     ],
+     "thumb_pose_source": "manual",
+     "thumb_iou_fit": 0.333,
+     "mesh3d": {
+      "n_verts": 1065,
+      "n_faces": 1046,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        1065,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 6390,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.014964622406847285,
+      "bone_radius": 0.008230542323766007
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 47,
+      "ours": 46,
+      "anymate": 55,
+      "magic_articulate": 48,
+      "puppeteer": 23,
+      "riganything": 29,
+      "unirig": 19
+     },
+     "ours_sample": {
+      "sample": "s4",
+      "video_sample": "s4",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    }
+   ],
+   "camera3d": {
+    "eye_dir": [
+     0.43938504177070536,
+     0.6427876096865393,
+     0.6275068715971329
+    ],
+    "up": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "az_el_deg": [
+     325.0,
+     40.0
+    ]
+   },
+   "methods_3d": [
+    "gt",
+    "ours",
+    "anymate",
+    "magic_articulate",
+    "puppeteer",
+    "riganything",
+    "unirig"
+   ]
+  },
+  {
+   "id": "diverse_pose",
+   "label": "Diverse Pose",
+   "dir": "diverse_pose",
+   "test_npz": "datasets/Articulation-XL2.0/articulation_xlv2_diverse_pose_test.npz",
+   "thumb_camera": {
+    "az": 330.0,
+    "el": 35.0
+   },
+   "baselines": [
+    "anymate",
+    "magic_articulate",
+    "puppeteer",
+    "riganything",
+    "unirig"
+   ],
+   "cases": [
+    {
+     "id": "19250911-84fc-569a-832e-5b7b07f18db4_frame106",
+     "dir": "19250911-84fc-569a-832e-5b7b07f18db4_frame106",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.477,
+     "mesh3d": {
+      "n_verts": 1088,
+      "n_faces": 1796,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        1088,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 6528,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.015909491813540084,
+      "bone_radius": 0.008750220497447047
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 13,
+      "ours": 22,
+      "anymate": 47,
+      "magic_articulate": 19,
+      "puppeteer": 12,
+      "riganything": 20,
+      "unirig": 16
+     },
+     "ours_sample": {
+      "sample": "s2",
+      "video_sample": "s4",
+      "weak_match": false,
+      "chosen_by_user": true
+     }
+    },
+    {
+     "id": "1ce99940-8672-5585-b94a-be6b59e85492_frame38",
+     "dir": "1ce99940-8672-5585-b94a-be6b59e85492_frame38",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.746,
+     "mesh3d": {
+      "n_verts": 5311,
+      "n_faces": 8261,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        5311,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 31866,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.016275019476159804,
+      "bone_radius": 0.008951260711887893
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 52,
+      "ours": 52,
+      "anymate": 46,
+      "magic_articulate": 52,
+      "puppeteer": 52,
+      "riganything": 23,
+      "unirig": 52
+     },
+     "ours_sample": {
+      "sample": "s3",
+      "video_sample": "s3",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "1eed1afeda684a69a55bef4c1bbe5670_frame29",
+     "dir": "1eed1afeda684a69a55bef4c1bbe5670_frame29",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.695,
+     "mesh3d": {
+      "n_verts": 1901,
+      "n_faces": 2934,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        1901,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 11406,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.016201419705151363,
+      "bone_radius": 0.008910780837833249
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 28,
+      "ours": 28,
+      "anymate": 36,
+      "magic_articulate": 28,
+      "puppeteer": 22,
+      "riganything": 19,
+      "unirig": 22
+     },
+     "ours_sample": {
+      "sample": "s2",
+      "video_sample": "s2",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "20ae9ed3d9a34f26aca1f007f3af6a7f_frame177",
+     "dir": "20ae9ed3d9a34f26aca1f007f3af6a7f_frame177",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.774,
+     "mesh3d": {
+      "n_verts": 53444,
+      "n_faces": 90114,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        53444,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 320664,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.014316113098002988,
+      "bone_radius": 0.007873862203901644
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 52,
+      "ours": 52,
+      "anymate": 35,
+      "magic_articulate": 52,
+      "puppeteer": 52,
+      "riganything": 22,
+      "unirig": 52
+     },
+     "ours_sample": {
+      "sample": "s0",
+      "video_sample": "s0",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "26a1f2a0-c163-58ce-9700-1a7fba73b8b9_frame22",
+     "dir": "26a1f2a0-c163-58ce-9700-1a7fba73b8b9_frame22",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.69,
+     "mesh3d": {
+      "n_verts": 2352,
+      "n_faces": 3859,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        2352,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 14112,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.014890847594789721,
+      "bone_radius": 0.008189966177134347
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 52,
+      "ours": 52,
+      "anymate": 39,
+      "magic_articulate": 22,
+      "puppeteer": 34,
+      "riganything": 33,
+      "unirig": 52
+     },
+     "ours_sample": {
+      "sample": "s2",
+      "video_sample": "s2",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "29918fba-941a-54d7-8691-b004b2cf2900_frame65",
+     "dir": "29918fba-941a-54d7-8691-b004b2cf2900_frame65",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.369,
+     "mesh3d": {
+      "n_verts": 1146,
+      "n_faces": 578,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        1146,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 6876,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.020187162021795133,
+      "bone_radius": 0.011102939111987325
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 35,
+      "ours": 42,
+      "anymate": 55,
+      "magic_articulate": 16,
+      "puppeteer": 14,
+      "riganything": 9,
+      "unirig": 26
+     },
+     "ours_sample": {
+      "sample": "s1",
+      "video_sample": "s1",
+      "weak_match": true,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "44f913a3fb224c92a8be5f30377db4e9_frame21",
+     "dir": "44f913a3fb224c92a8be5f30377db4e9_frame21",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.821,
+     "mesh3d": {
+      "n_verts": 18674,
+      "n_faces": 31696,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        18674,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 112044,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.015689034950113246,
+      "bone_radius": 0.008628969222562287
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 52,
+      "ours": 52,
+      "anymate": 41,
+      "magic_articulate": 27,
+      "puppeteer": 52,
+      "riganything": 52,
+      "unirig": 28
+     },
+     "ours_sample": {
+      "sample": "s4",
+      "video_sample": "s4",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "466003a7-3ce1-526a-87cf-70f74a6b9772_frame8",
+     "dir": "466003a7-3ce1-526a-87cf-70f74a6b9772_frame8",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.713,
+     "mesh3d": {
+      "n_verts": 1398,
+      "n_faces": 2074,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        1398,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 8388,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.017115775937219673,
+      "bone_radius": 0.009413676765470821
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 20,
+      "ours": 20,
+      "anymate": 50,
+      "magic_articulate": 23,
+      "puppeteer": 14,
+      "riganything": 20,
+      "unirig": 27
+     },
+     "ours_sample": {
+      "sample": "s3",
+      "video_sample": "s3",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "911e4259-f3d0-5dc8-bfd8-4afd6b08831d_frame320",
+     "dir": "911e4259-f3d0-5dc8-bfd8-4afd6b08831d_frame320",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       -1,
+       0
+      ],
+      [
+       0,
+       0,
+       -1
+      ]
+     ],
+     "thumb_pose_source": "manual",
+     "thumb_iou_fit": 0.202,
+     "mesh3d": {
+      "n_verts": 387,
+      "n_faces": 508,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        387,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 2322,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.017131573853753683,
+      "bone_radius": 0.009422365619564527
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 30,
+      "ours": 53,
+      "anymate": 45,
+      "magic_articulate": 9,
+      "puppeteer": 18,
+      "riganything": 27,
+      "unirig": 31
+     },
+     "ours_sample": {
+      "sample": "s2",
+      "video_sample": "s2",
+      "weak_match": true,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "df50f7a3-d9f9-56d3-ac42-435b70594636_frame21",
+     "dir": "df50f7a3-d9f9-56d3-ac42-435b70594636_frame21",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.664,
+     "mesh3d": {
+      "n_verts": 17236,
+      "n_faces": 32022,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        17236,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 103416,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.015631619162267893,
+      "bone_radius": 0.008597390539247341
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 26,
+      "ours": 80,
+      "anymate": 47,
+      "magic_articulate": 33,
+      "puppeteer": 8,
+      "riganything": 49,
+      "unirig": 40
+     },
+     "ours_sample": {
+      "sample": "s1",
+      "video_sample": "s1",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    }
+   ],
+   "camera3d": {
+    "eye_dir": [
+     0.4095760221444963,
+     0.573576436351046,
+     0.7094064799162223
+    ],
+    "up": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "az_el_deg": [
+     330.0,
+     35.0
+    ]
+   },
+   "methods_3d": [
+    "gt",
+    "ours",
+    "anymate",
+    "magic_articulate",
+    "puppeteer",
+    "riganything",
+    "unirig"
+   ]
+  },
+  {
+   "id": "modelsresource",
+   "label": "ModelsResource",
+   "dir": "modelsresource",
+   "test_npz": "datasets/ModelsResource/modelsresource_test.npz",
+   "thumb_camera": {
+    "az": 330.0,
+    "el": 40.0
+   },
+   "baselines": [
+    "anymate",
+    "magic_articulate",
+    "puppeteer",
+    "unirig"
+   ],
+   "cases": [
+    {
+     "id": "1262",
+     "dir": "1262",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.486,
+     "mesh3d": {
+      "n_verts": 793,
+      "n_faces": 1558,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        793,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 4758,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.018451853755462187,
+      "bone_radius": 0.010148519565504202
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 18,
+      "ours": 21,
+      "anymate": 47,
+      "magic_articulate": 31,
+      "puppeteer": 26,
+      "riganything": 21,
+      "unirig": 44
+     },
+     "ours_sample": {
+      "sample": "s3",
+      "video_sample": "s3",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "142",
+     "dir": "142",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.498,
+     "mesh3d": {
+      "n_verts": 1511,
+      "n_faces": 2998,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        1511,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 9066,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.01859684901476333,
+      "bone_radius": 0.010228266958119833
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 22,
+      "ours": 36,
+      "anymate": 47,
+      "magic_articulate": 31,
+      "puppeteer": 24,
+      "riganything": 26,
+      "unirig": 34
+     },
+     "ours_sample": {
+      "sample": "s3",
+      "video_sample": "s3",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "2982",
+     "dir": "2982",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.51,
+     "mesh3d": {
+      "n_verts": 935,
+      "n_faces": 1866,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        935,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 5610,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.016774979418148327,
+      "bone_radius": 0.009226238679981581
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 35,
+      "ours": 57,
+      "anymate": 50,
+      "magic_articulate": 45,
+      "puppeteer": 36,
+      "riganything": 26,
+      "unirig": 37
+     },
+     "ours_sample": {
+      "sample": "s3",
+      "video_sample": "s3",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "3661",
+     "dir": "3661",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.534,
+     "mesh3d": {
+      "n_verts": 730,
+      "n_faces": 1444,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        730,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 4380,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.016951207257380137,
+      "bone_radius": 0.009323163991559077
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 26,
+      "ours": 40,
+      "anymate": 49,
+      "magic_articulate": 30,
+      "puppeteer": 26,
+      "riganything": 18,
+      "unirig": 28
+     },
+     "ours_sample": {
+      "sample": "s4",
+      "video_sample": "s4",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    },
+    {
+     "id": "926",
+     "dir": "926",
+     "thumb_pose": [
+      [
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1
+      ]
+     ],
+     "thumb_pose_source": "fit",
+     "thumb_iou_fit": 0.525,
+     "mesh3d": {
+      "n_verts": 805,
+      "n_faces": 1540,
+      "positions": {
+       "offset": 0,
+       "dtype": "uint16",
+       "shape": [
+        1,
+        805,
+        3
+       ]
+      },
+      "faces": {
+       "offset": 4830,
+       "dtype": "uint16"
+      },
+      "joint_radius": 0.020962688410229253,
+      "bone_radius": 0.01152947862562609
+     },
+     "files3d": {
+      "mesh": "mesh3d.bin",
+      "skeletons": "skel3d.json"
+     },
+     "skeleton_joints": {
+      "gt": 20,
+      "ours": 26,
+      "anymate": 47,
+      "magic_articulate": 21,
+      "puppeteer": 13,
+      "riganything": 23,
+      "unirig": 20
+     },
+     "ours_sample": {
+      "sample": "s4",
+      "video_sample": "s4",
+      "weak_match": false,
+      "chosen_by_user": false
+     }
+    }
+   ],
+   "camera3d": {
+    "eye_dir": [
+     0.38302222155948934,
+     0.6427876096865393,
+     0.6634139481689382
+    ],
+    "up": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "az_el_deg": [
+     330.0,
+     40.0
+    ]
+   },
+   "methods_3d": [
+    "gt",
+    "ours",
+    "anymate",
+    "magic_articulate",
+    "puppeteer",
+    "riganything",
+    "unirig"
+   ]
+  }
+ ]
+}

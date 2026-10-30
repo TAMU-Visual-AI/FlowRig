@@ -1,0 +1,97 @@
+{
+ "id": "eb02e57f17d741329a66844a3a8d2094",
+ "label": "eb02e57f",
+ "n_frames": 24,
+ "fps": 4.0,
+ "panel_wh": [
+  540,
+  600
+ ],
+ "files": {
+  "thumb": "thumb.jpg",
+  "mesh4d": "mesh4d.bin",
+  "skeletons": "skeletons.json",
+  "videos": {
+   "front": {
+    "gt": "front/gt.mp4",
+    "ours": "front/ours.mp4",
+    "puppeteer": "front/puppeteer.mp4"
+   },
+   "orbit": {
+    "gt": "orbit/gt.mp4",
+    "ours": "orbit/ours.mp4",
+    "puppeteer": "orbit/puppeteer.mp4"
+   }
+  }
+ },
+ "mesh4d": {
+  "n_verts": 23456,
+  "n_faces": 36144,
+  "positions": {
+   "offset": 0,
+   "dtype": "uint16",
+   "shape": [
+    24,
+    23456,
+    3
+   ],
+   "dequant": "p = q / 65535 * 2 - 1"
+  },
+  "faces": {
+   "offset": 3377664,
+   "dtype": "uint16",
+   "shape": [
+    36144,
+    3
+   ]
+  }
+ },
+ "skeleton_joints": {
+  "gt": [
+   18
+  ],
+  "ours": [
+   19
+  ],
+  "puppeteer": [
+   12,
+   15,
+   16,
+   17,
+   18,
+   21
+  ]
+ },
+ "joint_radius": 0.014065754021783646,
+ "bone_radius": 0.007736164711981006,
+ "camera": {
+  "eye_dir": [
+   0.4262684390191254,
+   0.6087614290087207,
+   0.669107420708707
+  ],
+  "up": [
+   0.0,
+   1.0,
+   0.0
+  ],
+  "az_el_deg": [
+   327.5,
+   37.5
+  ]
+ },
+ "web_scale_from_stored": 2.0,
+ "sources": {
+  "ours_sample": "skt/outputs/2026-04-22_234959_animated-dit-L-E5000-BT16x8-animated-lr5e-5-anchort0-T2_4_8_16-continue-tLossW0.1G0.5-frame_global_alt/evaluation/step_0148000_texverse_skel_a500_005Good_animated_T24_allMesh_5_mn_T24/eb02e57f17d741329a66844a3a8d2094/s2",
+  "ours_cd_j2j": {
+   "s0": 0.013849183917045593,
+   "s1": 0.013637516647577286,
+   "s2": 0.013525630347430706,
+   "s3": 0.013958107680082321,
+   "s4": 0.02041490189731121
+  },
+  "puppeteer": "external/Puppeteer/skeleton/outputs_finetune/2026-05-05_133106_E1000-B60-lr5e-5-texverse_randomFrame-fixCondBug/evaluation/step_0004000_texverse_skel_a500_005Good_animated_T24_allMesh_t00-23/eb02e57f17d741329a66844a3a8d2094",
+  "puppeteer_mean_j2j_cd": 0.03237665848185619,
+  "puppeteer_extra_parent_edges": 2
+ }
+}

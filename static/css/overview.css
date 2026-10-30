@@ -1,0 +1,98 @@
+/* Method name + the Abstract / Method sections.
+   .flowrig marks every visible "FlowRig" on the page (wrap new mentions in <span class="flowrig">);
+   swap the typeface in one place via --flowrig-font. */
+:root {
+  --flowrig-font: 'Righteous', 'Google Sans', sans-serif;
+}
+.flowrig {
+  font-family: var(--flowrig-font);
+  font-weight: 400;          /* Righteous has a single weight */
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.overview-section {
+  padding-top: 3rem;
+  padding-bottom: 1.5rem;
+}
+.abstract-text {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: #363636;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.method-figure {
+  margin: 0;
+}
+.method-figure a {
+  display: block;
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid #e3e7ec;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+.method-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.method-figure figcaption {
+  max-width: 960px;
+  margin: 1.1rem auto 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #4a4a4a;
+  text-align: justify;
+}
+.method-figure figcaption b {
+  color: #363636;
+}
+
+@media screen and (max-width: 768px) {
+  .abstract-text,
+  .method-figure figcaption {
+    font-size: 0.95rem;
+    text-align: left;
+  }
+  .method-figure a {
+    padding: 0.6rem;
+  }
+}
+
+/* inline math symbols in captions (LaTeX-like italic serif) */
+var.math {
+  font-family: 'Times New Roman', 'Noto Serif', serif;
+  font-style: italic;
+  font-size: 1.08em;
+}
+
+/* Related Links: plain bulleted list of project pages, before the BibTeX */
+.related-intro {
+  font-size: 1.1rem;
+  color: #363636;
+  margin-bottom: 0.4rem;
+}
+.related-list {
+  list-style: disc;
+  margin-left: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.related-list li {
+  margin: 0.25rem 0;
+}
+.related-list a {
+  color: #4a5fd0;
+}
+.related-list a:hover {
+  text-decoration: underline;
+}
+@media screen and (max-width: 768px) {
+  .related-intro,
+  .related-list {
+    font-size: 0.95rem;
+  }
+}
