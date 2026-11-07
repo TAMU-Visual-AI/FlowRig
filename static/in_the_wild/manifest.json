@@ -1,0 +1,64 @@
+{
+ "cases": [
+  {
+   "id": "bear_obj1",
+   "label": "Bear",
+   "dir": "bear_obj1"
+  },
+  {
+   "id": "hike_obj1_2",
+   "label": "Hike",
+   "dir": "hike_obj1_2"
+  },
+  {
+   "id": "flamingo_obj1",
+   "label": "Flamingo",
+   "dir": "flamingo_obj1"
+  },
+  {
+   "id": "tennis_obj1",
+   "label": "Tennis",
+   "dir": "tennis_obj1"
+  },
+  {
+   "id": "cows_obj1",
+   "label": "Cows",
+   "dir": "cows_obj1"
+  },
+  {
+   "id": "dancing_obj3",
+   "label": "Dancing",
+   "dir": "dancing_obj3"
+  },
+  {
+   "id": "hockey_obj1",
+   "label": "Hockey",
+   "dir": "hockey_obj1"
+  },
+  {
+   "id": "judo_obj1",
+   "label": "Judo",
+   "dir": "judo_obj1"
+  },
+  {
+   "id": "stroller_obj1",
+   "label": "Stroller",
+   "dir": "stroller_obj1"
+  },
+  {
+   "id": "swing_obj1",
+   "label": "Swing",
+   "dir": "swing_obj1"
+  },
+  {
+   "id": "mallard-fly_obj1",
+   "label": "Mallard Fly",
+   "dir": "mallard-fly_obj1"
+  },
+  {
+   "id": "pigs_obj2",
+   "label": "Pigs",
+   "dir": "pigs_obj2"
+  }
+ ]
+}

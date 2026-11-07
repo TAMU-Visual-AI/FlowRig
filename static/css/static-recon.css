@@ -1,0 +1,95 @@
+/* Static Reconstruction section (static/js/static-recon.js). Builds on the shared viewer styles in in-the-wild.css
+   and the column headers / portrait stages of dynamic-recon.css; adds the dataset toolbar and the baseline menu. */
+.static-recon-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  --itw-accent: #00d1b2;
+  --itw-accent-dark: #00947e;
+  --itw-accent-light: #ebfffc;
+  --itw-line: #e3e7ec;
+  --itw-muted: #6b7280;
+  --itw-stage: #ffffff;   /* the renders have white backgrounds */
+}
+.st-toolbar {
+  flex-wrap: wrap;
+}
+.st-toolbar .itw-segmented {
+  margin-right: auto;
+  margin-left: 0.75rem;
+}
+.st-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem 0.9rem;
+  padding: 0 1.6rem;
+}
+.st-grid .itw-panel.is-ours {
+  border: 2px solid var(--itw-accent);
+}
+.st-baseline-head {
+  padding: 0.2rem 0.3rem;
+}
+.st-baseline-head .select,
+.st-baseline-head select {
+  width: 100%;
+}
+.st-baseline-head select {
+  border: 0;
+  background-color: transparent;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #363636;
+  text-align: center;
+  text-align-last: center;
+  box-shadow: none;
+}
+
+@media screen and (max-width: 768px) {
+  .st-toolbar .itw-segmented {
+    order: 3;
+    flex-basis: 100%;
+    margin: 0.4rem 0 0;
+    overflow-x: auto;
+  }
+  .st-grid {
+    gap: 0.5rem;
+    padding: 0 0.9rem;
+  }
+  .st-baseline-head select {
+    font-size: 0.85rem;
+  }
+}
+
+/* the static renders are cropped to 1760x1550 (600x528 encoded): slightly landscape */
+.st-stage {
+  aspect-ratio: 600 / 528;
+}
+
+/* interactive 3D row: header spanning the three columns, then three synced views */
+.st-3d-head {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #363636;
+}
+.st-3d-head small {
+  margin-left: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--itw-muted);
+}
+.st-stage canvas {
+  cursor: grab;
+}
+.st-3d-loading {
+  text-align: center;
+  padding: 0 0.6rem;
+  font-size: 0.85rem;
+}

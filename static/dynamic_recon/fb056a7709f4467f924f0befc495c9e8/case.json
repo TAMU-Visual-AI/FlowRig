@@ -1,0 +1,93 @@
+{
+ "id": "fb056a7709f4467f924f0befc495c9e8",
+ "label": "fb056a77",
+ "n_frames": 24,
+ "fps": 4.0,
+ "panel_wh": [
+  540,
+  600
+ ],
+ "files": {
+  "thumb": "thumb.jpg",
+  "mesh4d": "mesh4d.bin",
+  "skeletons": "skeletons.json",
+  "videos": {
+   "front": {
+    "gt": "front/gt.mp4",
+    "ours": "front/ours.mp4",
+    "puppeteer": "front/puppeteer.mp4"
+   },
+   "orbit": {
+    "gt": "orbit/gt.mp4",
+    "ours": "orbit/ours.mp4",
+    "puppeteer": "orbit/puppeteer.mp4"
+   }
+  }
+ },
+ "mesh4d": {
+  "n_verts": 6118,
+  "n_faces": 3106,
+  "positions": {
+   "offset": 0,
+   "dtype": "uint16",
+   "shape": [
+    24,
+    6118,
+    3
+   ],
+   "dequant": "p = q / 65535 * 2 - 1"
+  },
+  "faces": {
+   "offset": 880992,
+   "dtype": "uint16",
+   "shape": [
+    3106,
+    3
+   ]
+  }
+ },
+ "skeleton_joints": {
+  "gt": [
+   20
+  ],
+  "ours": [
+   20
+  ],
+  "puppeteer": [
+   19,
+   20
+  ]
+ },
+ "joint_radius": 0.016292099968843277,
+ "bone_radius": 0.008960654982863803,
+ "camera": {
+  "eye_dir": [
+   0.4262684390191254,
+   0.6087614290087207,
+   0.669107420708707
+  ],
+  "up": [
+   0.0,
+   1.0,
+   0.0
+  ],
+  "az_el_deg": [
+   327.5,
+   37.5
+  ]
+ },
+ "web_scale_from_stored": 2.0,
+ "sources": {
+  "ours_sample": "skt/outputs/2026-04-22_234959_animated-dit-L-E5000-BT16x8-animated-lr5e-5-anchort0-T2_4_8_16-continue-tLossW0.1G0.5-frame_global_alt/evaluation/step_0148000_texverse_skel_a500_005Good_animated_T24_allMesh_5_mn_T24/fb056a7709f4467f924f0befc495c9e8/s1",
+  "ours_cd_j2j": {
+   "s0": 0.00809113122522831,
+   "s1": 0.00719735911116004,
+   "s2": 0.0076953633688390255,
+   "s3": 0.03446325659751892,
+   "s4": 0.042628347873687744
+  },
+  "puppeteer": "external/Puppeteer/skeleton/outputs_finetune/2026-05-05_133106_E1000-B60-lr5e-5-texverse_randomFrame-fixCondBug/evaluation/step_0004000_texverse_skel_a500_005Good_animated_T24_allMesh_t00-23/fb056a7709f4467f924f0befc495c9e8",
+  "puppeteer_mean_j2j_cd": 0.012953695996354023,
+  "puppeteer_extra_parent_edges": 0
+ }
+}

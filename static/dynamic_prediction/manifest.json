@@ -1,0 +1,73 @@
+{
+ "fps": 4.0,
+ "n_frames": 24,
+ "panel_wh": [
+  360,
+  472
+ ],
+ "legend": {
+  "observed": "#5c8fe8",
+  "predicted": "#b4a332"
+ },
+ "tasks": [
+  {
+   "id": "forecast",
+   "label": "Forecast",
+   "file": "forecast.mp4"
+  },
+  {
+   "id": "backcast",
+   "label": "Backcast",
+   "file": "backcast.mp4"
+  },
+  {
+   "id": "interp4",
+   "label": "Interpolation",
+   "file": "interp4.mp4"
+  }
+ ],
+ "cases": [
+  {
+   "id": "female_dancer",
+   "label": "Female dancer",
+   "uuid": "df5ff62aa923415bbdc1f7d30a384094",
+   "dir": "female_dancer",
+   "reference": "reference.jpg"
+  },
+  {
+   "id": "male_dancer",
+   "label": "Male dancer",
+   "uuid": "f5e9e6cf24c54f2493d61039ac7d148b",
+   "dir": "male_dancer",
+   "reference": "reference.jpg"
+  },
+  {
+   "id": "pushup",
+   "label": "Push-up",
+   "uuid": "e20996eb0c06464fb5183faf43422500",
+   "dir": "pushup",
+   "reference": "reference.jpg"
+  },
+  {
+   "id": "racoon",
+   "label": "Raccoon",
+   "uuid": "ee7c8d71b0d04c97b3c4a67359b8eaf4",
+   "dir": "racoon",
+   "reference": "reference.jpg"
+  },
+  {
+   "id": "turtle",
+   "label": "Turtle",
+   "uuid": "ed0b0d8e0e1943198c7d95eb72189fe5",
+   "dir": "turtle",
+   "reference": "reference.jpg"
+  },
+  {
+   "id": "waluigi",
+   "label": "Waluigi",
+   "uuid": "d7d76182344d43ffbe11cae612caca4c",
+   "dir": "waluigi",
+   "reference": "reference.jpg"
+  }
+ ]
+}

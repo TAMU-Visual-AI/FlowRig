@@ -1,0 +1,108 @@
+{
+ "id": "ed0b0d8e0e1943198c7d95eb72189fe5",
+ "label": "ed0b0d8e",
+ "n_frames": 24,
+ "fps": 4.0,
+ "panel_wh": [
+  540,
+  600
+ ],
+ "files": {
+  "thumb": "thumb.jpg",
+  "mesh4d": "mesh4d.bin",
+  "skeletons": "skeletons.json",
+  "videos": {
+   "front": {
+    "gt": "front/gt.mp4",
+    "ours": "front/ours.mp4",
+    "puppeteer": "front/puppeteer.mp4"
+   },
+   "orbit": {
+    "gt": "orbit/gt.mp4",
+    "ours": "orbit/ours.mp4",
+    "puppeteer": "orbit/puppeteer.mp4"
+   }
+  }
+ },
+ "mesh4d": {
+  "n_verts": 26786,
+  "n_faces": 50304,
+  "positions": {
+   "offset": 0,
+   "dtype": "uint16",
+   "shape": [
+    24,
+    26786,
+    3
+   ],
+   "dequant": "p = q / 65535 * 2 - 1"
+  },
+  "faces": {
+   "offset": 3857184,
+   "dtype": "uint16",
+   "shape": [
+    50304,
+    3
+   ]
+  }
+ },
+ "skeleton_joints": {
+  "gt": [
+   23
+  ],
+  "ours": [
+   38,
+   39,
+   40
+  ],
+  "puppeteer": [
+   6,
+   9,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   22,
+   24,
+   25,
+   29,
+   32,
+   33,
+   34
+  ]
+ },
+ "joint_radius": 0.01919350300412842,
+ "bone_radius": 0.010556426652270632,
+ "camera": {
+  "eye_dir": [
+   0.4262684390191254,
+   0.6087614290087207,
+   0.669107420708707
+  ],
+  "up": [
+   0.0,
+   1.0,
+   0.0
+  ],
+  "az_el_deg": [
+   327.5,
+   37.5
+  ]
+ },
+ "web_scale_from_stored": 2.0,
+ "sources": {
+  "ours_sample": "skt/outputs/2026-04-22_234959_animated-dit-L-E5000-BT16x8-animated-lr5e-5-anchort0-T2_4_8_16-continue-tLossW0.1G0.5-frame_global_alt/evaluation/step_0148000_texverse_skel_a500_005Good_animated_T24_allMesh_5_mn_T24/ed0b0d8e0e1943198c7d95eb72189fe5/s2",
+  "ours_cd_j2j": {
+   "s0": 0.04985951632261276,
+   "s1": 0.05370111018419266,
+   "s2": 0.04683168977499008,
+   "s3": 0.04876293987035751,
+   "s4": 0.04834723100066185
+  },
+  "puppeteer": "external/Puppeteer/skeleton/outputs_finetune/2026-05-05_133106_E1000-B60-lr5e-5-texverse_randomFrame-fixCondBug/evaluation/step_0004000_texverse_skel_a500_005Good_animated_T24_allMesh_t00-23/ed0b0d8e0e1943198c7d95eb72189fe5",
+  "puppeteer_mean_j2j_cd": 0.09040431041891377,
+  "puppeteer_extra_parent_edges": 2
+ }
+}
